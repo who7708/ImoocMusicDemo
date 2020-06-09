@@ -25,4 +25,32 @@
         app:input_hint="手机号"
         app:input_icon="@mipmap/phone"
         app:is_password="false" />
+
+    <View style="@style/line" />
+
+    <com.example.music.view.InputView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/inputViewHeight"
+        android:layout_marginTop="@dimen/marginSize"
+        app:input_hint="密码"
+        app:input_icon="@mipmap/password"
+        app:is_password="true" />
+
+    <!-- 使用全局能用样式 -->
+    <View style="@style/line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onRegisterClick"
+        android:padding="@dimen/marginSize"
+        android:text="立即注册"
+        android:textColor="@color/mainColor"
+        android:textSize="@dimen/inputSize" />
+
+    <Button
+        style="@style/commitBtn"
+        android:layout_marginTop="@dimen/marginSize"
+        android:text="登  录" />
 </LinearLayout>
