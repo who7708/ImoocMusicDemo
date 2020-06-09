@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.music.R;
 import com.example.music.adapters.MusicGridAdapter;
+import com.example.music.view.GridSpaceItemDecoration;
 
 /**
  * @author Chris
@@ -32,6 +33,9 @@ public class MainActivity extends BaseActivity {
 
         // 同一行显示3个元素
         mRvGrid.setLayoutManager(new GridLayoutManager(this, 3));
+        // 分隔线 1dp
+        // mRvGrid.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+        mRvGrid.addItemDecoration(new GridSpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.albumMarginSize)));
 
         musicGridAdapter = new MusicGridAdapter(this);
         mRvGrid.setAdapter(musicGridAdapter);
