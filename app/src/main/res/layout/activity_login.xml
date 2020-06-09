@@ -53,6 +53,6 @@
     <Button
         style="@style/commitBtn"
         android:layout_marginTop="@dimen/marginSize"
-        android:onClick="onCommitClick"
+        android:onClick="login"
         android:text="登  录" />
 </LinearLayout>
