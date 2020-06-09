@@ -5,7 +5,8 @@
         <!-- Customize your theme here. -->
         <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <item name="colorPrimaryDark">@color/mainColor</item>
-        <!--<item name="android:statusBarColor">@color/mainColor</item>-->
+        <item name="android:statusBarColor">@color/mainColor</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
         <!--<item name="colorAccent">@color/colorAccent</item>-->
     </style>
 </resources>
