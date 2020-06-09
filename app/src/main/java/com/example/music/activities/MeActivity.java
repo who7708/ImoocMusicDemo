@@ -1,5 +1,6 @@
 package com.example.music.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,14 +24,16 @@ public class MeActivity extends BaseActivity {
     /**
      * 修改密码点击事件
      */
-    public void changePassword(View view) {
-
+    public void onChangePasswordClick(View view) {
+        // UserUtils.changePasswordActivity(this);
+        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        startActivity(intent);
     }
 
     /**
      * 退出登录
      */
-    public void logout(View view) {
+    public void onLogoutClick(View view) {
         UserUtils.logout(this);
     }
 }

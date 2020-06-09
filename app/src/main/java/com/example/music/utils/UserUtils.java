@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.util.RegexUtils;
 import com.example.music.R;
+import com.example.music.activities.ChangePasswordActivity;
 import com.example.music.activities.LoginActivity;
 
 /**
@@ -43,5 +44,14 @@ public class UserUtils {
         context.startActivity(intent);
         // 定义 Activity 跳转动画。由于 task 栈被清空或重新生成了。所以需要设置一下
         ((Activity) context).overridePendingTransition(R.anim.open_enter, R.anim.open_exit);
+    }
+
+    public static void changePasswordActivity(Context context) {
+        Intent intent = new Intent(context, ChangePasswordActivity.class);
+        // 添加 intent 标志符， 清理 task 栈， 并重新生成一个 task 栈
+        // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+        // 定义 Activity 跳转动画。由于 task 栈被清空或重新生成了。所以需要设置一下
+        // ((Activity) context).overridePendingTransition(R.anim.open_enter, R.anim.open_exit);
     }
 }
