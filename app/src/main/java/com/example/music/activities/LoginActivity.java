@@ -38,6 +38,9 @@ public class LoginActivity extends BaseActivity {
      * 跳转注册页面点击事件
      */
     public void onRegisterClick(View view) {
+        //  跳转到注册页面
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     /**
