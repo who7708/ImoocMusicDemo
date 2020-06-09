@@ -48,7 +48,7 @@
         android:padding="@dimen/marginSize"
         android:text="立即注册"
         android:textColor="@color/mainColor"
-        android:textSize="@dimen/inputSize" />
+        android:textSize="@dimen/infoSize" />
 
     <Button
         style="@style/commitBtn"

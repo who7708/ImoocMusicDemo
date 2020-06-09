@@ -15,7 +15,7 @@ import com.example.music.R;
  * @version 1.0.0
  * @date 2020/6/9
  */
-public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.MusicViewHolder> {
+public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.MusicGridViewHolder> {
     private Context mContext;
 
     public MusicGridAdapter(Context context) {
@@ -24,12 +24,12 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.Musi
 
     @NonNull
     @Override
-    public MusicViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new MusicViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_grid_music, viewGroup, false));
+    public MusicGridViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        return new MusicGridViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_grid_music, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MusicViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MusicGridViewHolder holder, int position) {
 
     }
 
@@ -38,8 +38,8 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.Musi
         return 6;
     }
 
-    class MusicViewHolder extends RecyclerView.ViewHolder {
-        public MusicViewHolder(@NonNull View itemView) {
+    class MusicGridViewHolder extends RecyclerView.ViewHolder {
+        public MusicGridViewHolder(@NonNull View itemView) {
             super(itemView);
         }
     }
