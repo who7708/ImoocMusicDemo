@@ -1,10 +1,15 @@
-package com.example.music;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.music.activities;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.music.R;
+
+/**
+ * @author Chris
+ * @version 1.0.0
+ * @date 2020/6/9
+ */
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
