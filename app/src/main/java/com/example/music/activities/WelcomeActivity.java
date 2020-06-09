@@ -57,5 +57,7 @@ public class WelcomeActivity extends BaseActivity {
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        // 结束当前欢迎界面
+        finish();
     }
 }

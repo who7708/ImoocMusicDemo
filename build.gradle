@@ -3,6 +3,13 @@ buildscript {
     repositories {
         google()
         jcenter()
+
+        // maven {
+        //     url 'https://maven.aliyun.com/repository/google'
+        // }
+        // maven {
+        //     url 'https://maven.aliyun.com/repository/jcenter'
+        // }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
@@ -16,6 +23,13 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        // maven {
+        //     url 'https://maven.aliyun.com/repository/google'
+        // }
+        // maven {
+        //     url 'https://maven.aliyun.com/repository/jcenter'
+        // }
     }
 }
 
