@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.music.R;
 
 /**
@@ -38,6 +40,11 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.Musi
     @Override
     public void onBindViewHolder(@NonNull MusicListViewHolder holder, int position) {
         setRecyclerViewHeight();
+
+        // 加载网络图片
+        Glide.with(mContext)
+                .load("http://res.lgdsunday.club/poster-1.png")
+                .into(holder.ivListIcon);
     }
 
     @Override
@@ -64,8 +71,11 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.Musi
     }
 
     class MusicListViewHolder extends RecyclerView.ViewHolder {
+        private ImageView ivListIcon;
+
         public MusicListViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivListIcon = itemView.findViewById(R.id.iv_icon);
         }
     }
 }

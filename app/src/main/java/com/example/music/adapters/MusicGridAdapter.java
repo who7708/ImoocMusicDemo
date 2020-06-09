@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.music.R;
 
 /**
@@ -30,7 +32,10 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.Musi
 
     @Override
     public void onBindViewHolder(@NonNull MusicGridViewHolder holder, int position) {
-
+        // 加载网络图片
+        Glide.with(mContext)
+                .load("http://res.lgdsunday.club/poster-1.png")
+                .into(holder.ivGridIcon);
     }
 
     @Override
@@ -39,8 +44,11 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.Musi
     }
 
     class MusicGridViewHolder extends RecyclerView.ViewHolder {
+        private ImageView ivGridIcon;
+
         public MusicGridViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivGridIcon = itemView.findViewById(R.id.iv_grid_icon);
         }
     }
 }

@@ -72,7 +72,7 @@ public class InputView extends FrameLayout {
 
         // 绑定 layout 布局
         mView = LayoutInflater.from(context).inflate(R.layout.input_view, this, false);
-        mIvIcon = mView.findViewById(R.id.iv_icon);
+        mIvIcon = mView.findViewById(R.id.iv_input_icon);
         mEtInput = mView.findViewById(R.id.et_input);
 
         // 布局关联属性
