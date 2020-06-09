@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GridSpaceItemDecoration extends RecyclerView.ItemDecoration {
     private int mSpace;
 
-    public GridSpaceItemDecoration(int mSpace) {
+    public GridSpaceItemDecoration(int mSpace, RecyclerView parent) {
         this.mSpace = mSpace;
+        getRecyclerViewOffsets(parent);
     }
 
     /**
@@ -35,6 +36,9 @@ public class GridSpaceItemDecoration extends RecyclerView.ItemDecoration {
         //     outRect.left = 0;
         // }
 
+    }
+
+    private void getRecyclerViewOffsets(RecyclerView parent) {
         // View margin,
         // margin 为正， 则 view 会距离边界产生一个距离
         // margin 为负， 则 view 会超出边界并行处理一个距离
@@ -43,6 +47,5 @@ public class GridSpaceItemDecoration extends RecyclerView.ItemDecoration {
 
         layoutParams.leftMargin = -mSpace;
         parent.setLayoutParams(layoutParams);
-
     }
 }

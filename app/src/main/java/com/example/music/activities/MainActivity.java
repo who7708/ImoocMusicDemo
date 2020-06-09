@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
         mRvGrid.setLayoutManager(new GridLayoutManager(this, 3));
         // 分隔线 1dp
         // mRvGrid.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
-        mRvGrid.addItemDecoration(new GridSpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.albumMarginSize)));
+        mRvGrid.addItemDecoration(new GridSpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.albumMarginSize), mRvGrid));
 
         musicGridAdapter = new MusicGridAdapter(this);
         mRvGrid.setAdapter(musicGridAdapter);
