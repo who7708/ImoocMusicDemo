@@ -34,13 +34,26 @@ public class RealmHelper {
         return mRealm.where(UserModel.class).findAll();
     }
 
-
-
     public boolean validateUser(String phone, String password) {
-        UserModel userModel =  mRealm.where(UserModel.class)
+        UserModel userModel = mRealm.where(UserModel.class)
                 .equalTo("phone", phone)
                 .equalTo("password", password).findFirst();
         return userModel != null;
+    }
+
+    public UserModel getUser() {
+        return mRealm.where(UserModel.class)
+                .equalTo("phone", UserHelper.getInstance().getPhone())
+                .findFirst();
+    }
+
+    public void changePassword(String password){
+        UserModel userModel = getUser();
+        mRealm.beginTransaction();
+
+        userModel.setPassword(password);
+
+        mRealm.commitTransaction();
     }
 
 }

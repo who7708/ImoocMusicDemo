@@ -3,7 +3,6 @@ package com.example.music.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.EncryptUtils;
@@ -37,7 +36,7 @@ public class UserUtils {
             return false;
         }
 
-        if (TextUtils.isEmpty(password)) {
+        if (StringUtils.isEmpty(password)) {
             Toast.makeText(context, "请输入密码", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -95,7 +94,7 @@ public class UserUtils {
             return false;
         }
 
-        if (TextUtils.isEmpty(password) || !TextUtils.equals(password, passwordConfirm)) {
+        if (StringUtils.isEmpty(password) || !StringUtils.equals(password, passwordConfirm)) {
             Toast.makeText(context, "请确认密码", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -134,5 +133,28 @@ public class UserUtils {
 
     public static boolean validateUserLogin(Context context) {
         return SPUtils.isLoginUser(context);
+    }
+
+    public static boolean changeUserPassword(Context context, String oldPassword, String newPassword, String newPasswordConfirm) {
+        if (StringUtils.isEmpty(oldPassword)) {
+            Toast.makeText(context, "请输入原密码", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (StringUtils.isEmpty(oldPassword) || !StringUtils.equals(newPassword, newPasswordConfirm)) {
+            Toast.makeText(context, "请确认新密码", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        RealmHelper realmHelper = new RealmHelper();
+        UserModel userModel = realmHelper.getUser();
+        if (!StringUtils.equals(userModel.getPassword(), EncryptUtils.encryptMD5ToString(oldPassword))) {
+            Toast.makeText(context, "原密码输入不正确", Toast.LENGTH_SHORT).show();
+            realmHelper.close();
+            return false;
+        }
+
+        realmHelper.changePassword(EncryptUtils.encryptMD5ToString(newPassword));
+        realmHelper.close();
+        return true;
+
     }
 }
