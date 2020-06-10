@@ -66,6 +66,12 @@ public class UserUtils {
     }
 
     public static void logout(Context context) {
+        // 删除 sp 保存的登录标记
+        if (!SPUtils.removeUser(context)) {
+            Toast.makeText(context, "系统错误稍候重试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Intent intent = new Intent(context, LoginActivity.class);
         // 添加 intent 标志符， 清理 task 栈， 并重新生成一个 task 栈
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

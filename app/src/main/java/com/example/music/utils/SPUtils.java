@@ -35,4 +35,11 @@ public class SPUtils {
         }
         return false;
     }
+
+    public static boolean removeUser(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(MusicConstants.SP_KEY_PHONE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove(MusicConstants.SP_KEY_PHONE);
+        return editor.commit();
+    }
 }
