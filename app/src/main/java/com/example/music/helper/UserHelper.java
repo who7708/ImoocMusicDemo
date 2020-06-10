@@ -30,4 +30,10 @@ public class UserHelper {
         }
         return instance;
     }
+
+    private String phone;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

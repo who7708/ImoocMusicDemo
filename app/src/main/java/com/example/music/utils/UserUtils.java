@@ -13,6 +13,7 @@ import com.example.music.R;
 import com.example.music.activities.ChangePasswordActivity;
 import com.example.music.activities.LoginActivity;
 import com.example.music.helper.RealmHelper;
+import com.example.music.helper.UserHelper;
 import com.example.music.models.UserModel;
 
 import java.util.List;
@@ -51,6 +52,16 @@ public class UserUtils {
             Toast.makeText(context, "手机号或密码不正确", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        // 保存登录标记
+        if (!SPUtils.saveUser(context, phone)) {
+            Toast.makeText(context, "系统错误稍候重试", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // 保存用户标记，利用单例类
+        UserHelper.getInstance().setPhone(phone);
+
         return true;
     }
 
@@ -103,13 +114,19 @@ public class UserUtils {
     }
 
     public static boolean userExistFromPhone(String phone) {
+        boolean result = false;
         RealmHelper realmHelper = new RealmHelper();
         List<UserModel> allUser = realmHelper.getAllUser();
         for (UserModel userModel : allUser) {
             if (StringUtils.equals(userModel.getPhone(), phone)) {
-                return true;
+                result = true;
             }
         }
-        return false;
+        realmHelper.close();
+        return result;
+    }
+
+    public static boolean validateUserLogin(Context context) {
+        return SPUtils.isLoginUser(context);
     }
 }
