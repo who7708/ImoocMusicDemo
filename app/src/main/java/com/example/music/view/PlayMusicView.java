@@ -1,6 +1,7 @@
 package com.example.music.view;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -14,8 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.example.music.R;
+import com.example.music.utils.MediaPlayHelper;
 
 /**
  * @author Chris
@@ -27,6 +30,9 @@ public class PlayMusicView extends FrameLayout {
     private boolean isPlay;
 
     private Context mContext;
+    private MediaPlayHelper mediaPlayHelper;
+    private String mPath;
+
     private View mView;
     private FrameLayout mFlPlayMusic;
     private ImageView mIvIcon, mIvNeedle, mIvPlay;
@@ -55,7 +61,10 @@ public class PlayMusicView extends FrameLayout {
     }
 
     private void init(Context context) {
+
         this.mContext = context;
+        this.mediaPlayHelper = MediaPlayHelper.getInstance(mContext);
+
         mView = LayoutInflater.from(mContext).inflate(R.layout.play_music, this, false);
         mFlPlayMusic = mView.findViewById(R.id.fl_play_music);
         mFlPlayMusic.setOnClickListener(new OnClickListener() {
@@ -91,18 +100,34 @@ public class PlayMusicView extends FrameLayout {
         if (isPlay) {
             stopMusic();
         } else {
-            playMusic();
+            playMusic(mPath);
         }
     }
 
     /**
      * 播放音乐
      */
-    public void playMusic() {
-        isPlay = true;
+    public void playMusic(String path) {
+        this.isPlay = true;
+        this.mPath = path;
         mIvPlay.setVisibility(View.GONE);
         mFlPlayMusic.startAnimation(mPlayMusicAnim);
         mIvNeedle.startAnimation(mPlayNeedleAnim);
+
+        // 1. 音乐是不已经正在播放
+        // 2. 如果当前的音乐是已经在播放，那么就直接执行 start 方法
+        // 3. 如果当前的音乐不是需要播放的音乐，则调用 setPath 方法
+        if (StringUtils.equals(mediaPlayHelper.getPath(), path)) {
+            mediaPlayHelper.start();
+        } else {
+            mediaPlayHelper.setPath(path);
+            mediaPlayHelper.setOnMediaPlayerHelperListener(new MediaPlayHelper.OnMediaPlayerHelperListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayHelper.start();
+                }
+            });
+        }
     }
 
     /**
@@ -113,6 +138,8 @@ public class PlayMusicView extends FrameLayout {
         mIvPlay.setVisibility(View.VISIBLE);
         mFlPlayMusic.clearAnimation();
         mIvNeedle.startAnimation(mStopNeedleAnim);
+
+        mediaPlayHelper.pause();
     }
 
     /**
