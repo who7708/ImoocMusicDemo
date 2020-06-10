@@ -42,7 +42,7 @@ public class PlayMusicActivity extends BaseActivity {
         // 初始化 play_music
         mPlayMusicView = fd(R.id.play_music_view);
         mPlayMusicView.setMusicIcon(MusicConstants.POST_PIC);
-
+        mPlayMusicView.playMusic();
     }
 
     public void onBackClick(View view) {

@@ -6,6 +6,7 @@
 
     <!-- 光盘 -->
     <FrameLayout
+        android:id="@+id/fl_play_music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/discTopSize">
@@ -25,6 +26,7 @@
             app:civ_border_width="2dp" />
 
         <ImageView
+            android:id="@+id/iv_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -33,7 +35,9 @@
 
     </FrameLayout>
 
+    <!-- 指针 -->
     <ImageView
+        android:id="@+id/iv_needle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
