@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
 
+import io.realm.Realm;
+
 /**
  * @author Chris
  * @version 1.0.0
@@ -15,5 +17,7 @@ public class MyApplication extends Application {
         super.onCreate();
         // 初始化 AndroidUtilCode
         Utils.init(this);
+        // Initialize Realm (just once per application)
+        Realm.init(this);
     }
 }
