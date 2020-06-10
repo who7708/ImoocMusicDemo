@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.music.R;
 import com.example.music.constants.MusicConstants;
+import com.example.music.view.PlayMusicView;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
@@ -16,6 +17,8 @@ public class PlayMusicActivity extends BaseActivity {
 
     // 背景图片
     private ImageView mIvBg;
+
+    private PlayMusicView mPlayMusicView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,11 @@ public class PlayMusicActivity extends BaseActivity {
                 .load(MusicConstants.POST_PIC)
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 10)))
                 .into(mIvBg);
+
+        // 初始化 play_music
+        mPlayMusicView = fd(R.id.play_music_view);
+        mPlayMusicView.setMusicIcon(MusicConstants.POST_PIC);
+
     }
 
     public void onBackClick(View view) {
