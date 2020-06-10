@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.StringUtils;
 import com.example.music.R;
 import com.example.music.activities.ChangePasswordActivity;
 import com.example.music.activities.LoginActivity;
+import com.example.music.helper.RealmHelper;
 import com.example.music.models.UserModel;
 
 import java.util.List;
@@ -37,6 +38,17 @@ public class UserUtils {
 
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(context, "请输入密码", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!userExistFromPhone(phone)) {
+            Toast.makeText(context, "请先注册", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        RealmHelper realmHelper = new RealmHelper();
+        if (!realmHelper.validateUser(phone, EncryptUtils.encryptMD5ToString(password))) {
+            Toast.makeText(context, "手机号或密码不正确", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

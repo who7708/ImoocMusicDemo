@@ -1,4 +1,4 @@
-package com.example.music.utils;
+package com.example.music.helper;
 
 import com.example.music.models.UserModel;
 
@@ -32,6 +32,15 @@ public class RealmHelper {
 
     public List<UserModel> getAllUser() {
         return mRealm.where(UserModel.class).findAll();
+    }
+
+
+
+    public boolean validateUser(String phone, String password) {
+        UserModel userModel =  mRealm.where(UserModel.class)
+                .equalTo("phone", phone)
+                .equalTo("password", password).findFirst();
+        return userModel != null;
     }
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.music.R;
+import com.example.music.utils.UserUtils;
 import com.example.music.view.InputView;
 
 /**
@@ -50,9 +51,9 @@ public class LoginActivity extends BaseActivity {
         String password = mInputPassword.getInputStr();
 
         // 验证登录信息
-        // if (!UserUtils.validateLogin(this, phone, password)) {
-        //     return;
-        // }
+        if (!UserUtils.validateLogin(this, phone, password)) {
+            return;
+        }
 
         //  跳转到应用主页
         Intent intent = new Intent(this, MainActivity.class);

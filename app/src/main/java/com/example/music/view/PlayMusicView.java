@@ -18,7 +18,7 @@ import androidx.annotation.RequiresApi;
 import com.blankj.utilcode.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.example.music.R;
-import com.example.music.utils.MediaPlayHelper;
+import com.example.music.helper.MediaPlayHelper;
 
 /**
  * @author Chris
