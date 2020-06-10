@@ -1,6 +1,7 @@
 package com.example.music.activities;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.music.R;
 
@@ -18,4 +19,6 @@ public class RegisterActivity extends BaseActivity {
         initNavBar(true, "注册", false);
     }
 
+    public void registerUser(View view) {
+    }
 }

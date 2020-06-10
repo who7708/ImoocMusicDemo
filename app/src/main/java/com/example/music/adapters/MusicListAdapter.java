@@ -1,6 +1,7 @@
 package com.example.music.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.music.R;
+import com.example.music.activities.PlayMusicActivity;
+import com.example.music.constants.MusicConstants;
 
 /**
  * @author Chris
@@ -38,13 +41,21 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.Musi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MusicListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MusicListViewHolder viewHolder, int position) {
         setRecyclerViewHeight();
 
         // 加载网络图片
         Glide.with(mContext)
-                .load("http://res.lgdsunday.club/poster-1.png")
-                .into(holder.ivListIcon);
+                .load(MusicConstants.POST_PIC)
+                .into(viewHolder.ivListIcon);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PlayMusicActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -58,7 +69,8 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.Musi
      * 3. RecyclerView 的高度 =  itemViewHeight * itemViewNum
      */
     private void setRecyclerViewHeight() {
-        if (!isCalculationRecyclerViewHeight) {
+        if (!isCalculationRecyclerViewHeight && mRecyclerView != null) {
+            isCalculationRecyclerViewHeight = true;
             // 获取 ItemView 的高度
             RecyclerView.LayoutParams itemViewLayoutParams = (RecyclerView.LayoutParams) mItemView.getLayoutParams();
             int itemCount = getItemCount();
@@ -66,15 +78,16 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.Musi
             LinearLayout.LayoutParams recyclerViewLayoutParams = (LinearLayout.LayoutParams) mRecyclerView.getLayoutParams();
             recyclerViewLayoutParams.height = recyclerViewHeight;
             mRecyclerView.setLayoutParams(recyclerViewLayoutParams);
-            isCalculationRecyclerViewHeight = true;
         }
     }
 
     class MusicListViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivListIcon;
+        private View itemView;
 
         public MusicListViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
             ivListIcon = itemView.findViewById(R.id.iv_icon);
         }
     }

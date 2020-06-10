@@ -30,9 +30,17 @@ dependencies {
     // implementation 'com.blankj:utilcode:1.29.0'
 
     // if u use AndroidX, use the following
+    // android 工具方法库，手机，邮箱，密码等
     implementation 'com.blankj:utilcodex:1.29.0'
+
+    // 网络图片加载
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // 图片处理库，高斯模糊
+    implementation 'jp.wasabeef:glide-transformations:4.1.0'
+    // If you want to use the GPU Filters
+    // implementation 'jp.co.cyberagent.android:gpuimage:2.x.x'
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
